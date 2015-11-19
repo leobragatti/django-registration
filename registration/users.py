@@ -1,7 +1,13 @@
 from django.conf import settings
-from django.contrib.auth import get_user_model
 
-UserModel = get_user_model
+def UserModel():
+    try:
+        from django.contrib.auth import get_user_model
+        return get_user_model()
+    except:
+        from django.contrib.auth.models import User
+        return User
+
 
 def UserModelString():
     try:
